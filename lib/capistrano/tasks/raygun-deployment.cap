@@ -53,6 +53,6 @@ namespace :deploy do
         end
     end
   end
-  after :published, :raygun_register_deployment
+  after 'deploy:finished', :raygun_register_deployment
 
 end
