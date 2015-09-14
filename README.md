@@ -29,7 +29,7 @@ You'll need the Raygun API Key for your application, plus an External Auth Token
 Finally, create a release file. We default to checking `RELEASE`, but you can change this by setting `:raygun_release_path`
 This is an example release file:
 
-    version: 6.0.0.0
+    version: 6.0.0
     ownerName: Jamie Penney
     emailAddress: jamie@example.com
     notes: |
@@ -40,3 +40,9 @@ This is an example release file:
         ### Jamie
 
 Once you've written this to `RELEASE`, you can deploy with `cap deploy` and your deployment will be sent to Raygun!
+
+# Changelog
+
+* **1.1.0**: Use `after deploy:finished` instead of `after :published` so that deployments are only pushed to Raygun when things 
+fully succeed.
+* **1.0.0**: Initial release
