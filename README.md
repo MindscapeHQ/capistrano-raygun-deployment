@@ -23,6 +23,8 @@ Finally, add this configuration to your config:
     set :raygun_auth_token, "YOUR_EXTERNAL_AUTH_TOKEN"
     set :raygun_release_path, "releases/LATEST" #optional, defaults to RELEASE
     set :use_git, false #optional, for if you don't want to send a git hash with your deployment
+    # optional, set to the list of environments you want to create deployments for
+    set :raygun_deployment_environments, [:production]
 
 You'll need the Raygun API Key for your application, plus an External Auth Token which you can generate [here](https://app.raygun.io/user).
 
@@ -42,7 +44,7 @@ This is an example release file:
 Once you've written this to `RELEASE`, you can deploy with `cap deploy` and your deployment will be sent to Raygun!
 
 # Changelog
-
+* **1.2.0**: Add :raygun_deployment_environments config, to specify the list of environments you want to create deployments for.
 * **1.1.0**: Use `after deploy:finished` instead of `after :published` so that deployments are only pushed to Raygun when things 
 fully succeed.
-* **1.0.0**: Initial release
+* **1.0.0**: Initial release.
