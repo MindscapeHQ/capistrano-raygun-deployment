@@ -6,15 +6,14 @@ namespace :deploy do
   desc 'Registers a deployment with Raygun'
   task :raygun_register_deployment do
 
-    if fetch(:raygun_api_key).nil?
-      ask(:raygun_api_key, 'Required')
-    end
-    if fetch(:raygun_auth_token).nil?
-      ask(:raygun_auth_token, 'Required')
+    required_options = [:raygun_api_key, :raygun_auth_token]
+    required_options.each do |opt|
+      if fetch(opt).nil?
+        ask(opt, 'Required')
+      end
     end
 
     run_locally do
-
       yaml = YAML::load_file(fetch(:raygun_release_path, 'RELEASE'))
 
       use_git = fetch(:scm) == :git && fetch(:use_git, true)
@@ -31,6 +30,7 @@ namespace :deploy do
         'emailAddress' => yaml['emailAddress'],
         'comment' => yaml['notes'],
         'scmIdentifier' => git_hash,
+        'scmType' => fetch(:raygun_scm_type) || 'Github',
         'createdAt' => yaml['createdAt']
       }
 
