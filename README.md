@@ -23,6 +23,7 @@ Finally, add this configuration to your config:
     set :raygun_auth_token, "YOUR_EXTERNAL_AUTH_TOKEN"
     set :raygun_release_path, "releases/LATEST" #optional, defaults to RELEASE
     set :use_git, false #optional, for if you don't want to send a git hash with your deployment
+    set :raygun_scm_type, 'SCM Type' # must be one of GitLab, BitBucket or Github. Defaults to Github if not set
 
 You'll need the Raygun API Key for your application, plus an External Auth Token which you can generate [here](https://app.raygun.io/user).
 
